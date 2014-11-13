@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class VC_DisplayArtist: UIViewController {
+class VC_ManageArtist: UIViewController {
     
     var artist = [NSManagedObject]();
     
@@ -23,5 +23,16 @@ class VC_DisplayArtist: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func edit(){
+        var myObject:NSManagedObject = NSEntityDescription.insertNewObjectForEntityForName("Artist", inManagedObjectContext:moc) as NSManagedObject;
+        
+        myObject.setValue(NSDate(), forKey: "createdAt");
+        
+        appDelegate.saveContext();
+    }
+    
+    func insert(){
+        
+    }
     
 }

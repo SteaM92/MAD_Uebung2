@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class VC_DisplayArtist: UIViewController {
+class VC_ManageAlbum: UIViewController {
     
     var album = [NSManagedObject]();
     
