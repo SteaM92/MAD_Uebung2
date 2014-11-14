@@ -17,4 +17,8 @@
 @dynamic id;
 @dynamic albums;
 
+-(NSInteger) numberOfAlbums{
+    return [self.albums count];
+}
+
 @end

@@ -95,15 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				28A3755F1A14E78C0029295F /* AppDelegate.swift */,
+				28A5D7351A15153C0060DFB8 /* Models */,
 				28A375841A14EBD70029295F /* VC_DisplayArtist.swift */,
 				28A375881A14EC850029295F /* VC_ManageArtist.swift */,
 				28A3758A1A14EC930029295F /* VC_ManageAlbum.swift */,
 				28A375861A14EC4D0029295F /* VC_DisplayAlbum.swift */,
 				28A375661A14E78C0029295F /* Main.storyboard */,
-				28A375911A14F3230029295F /* Album.h */,
-				28A375921A14F3230029295F /* Album.m */,
-				28A3758E1A14F3230029295F /* Artist.h */,
-				28A3758F1A14F3230029295F /* Artist.m */,
 				28A375691A14E78C0029295F /* Images.xcassets */,
 				28A3756B1A14E78C0029295F /* LaunchScreen.xib */,
 				28A375611A14E78C0029295F /* MAD_Uebung2.xcdatamodeld */,
@@ -135,6 +132,17 @@
 				28A375771A14E78D0029295F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28A5D7351A15153C0060DFB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				28A375911A14F3230029295F /* Album.h */,
+				28A375921A14F3230029295F /* Album.m */,
+				28A3758E1A14F3230029295F /* Artist.h */,
+				28A3758F1A14F3230029295F /* Artist.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +448,7 @@
 				28A3757E1A14E78D0029295F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		28A3757F1A14E78D0029295F /* Build configuration list for PBXNativeTarget "MAD_Uebung2Tests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +457,7 @@
 				28A375811A14E78D0029295F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

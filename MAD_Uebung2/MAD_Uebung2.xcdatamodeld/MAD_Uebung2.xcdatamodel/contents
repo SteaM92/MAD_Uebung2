@@ -11,10 +11,10 @@
         <attribute name="id" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="albums" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
+        <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Artist" positionX="-54" positionY="-9" width="128" height="103"/>
         <element name="Album" positionX="243" positionY="72" width="128" height="118"/>
+        <element name="Artist" positionX="-54" positionY="-9" width="128" height="103"/>
     </elements>
 </model>

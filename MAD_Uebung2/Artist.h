@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) Album *albums;
 
+-(NSInteger) numberOfAlbums();
+
 @end
