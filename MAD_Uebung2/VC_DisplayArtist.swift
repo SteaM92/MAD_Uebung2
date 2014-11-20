@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var artist = [NSManagedObject]();
+class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     var aFetchedRequestResultsControlller:NSFetchedResultsController?;
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,9 @@ class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDele
             abort();
         }
         
-        //NSLog("\(result)");
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,10 +56,88 @@ class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var identifier:NSString = "ArtistCell";
         var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as UITableViewCell; //get cell
+        
+        fillCells(cell, indexPath: indexPath)
+        
+        return cell;
     }
     
     func fillCells(cell:UITableViewCell, indexPath:NSIndexPath){
-        let obj = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath) as Artist;
+        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath) as Artist;
+        
+       /// var label = cell.viewWithTag(1) as UILabel
+        //label.text = ("\(artist.name)");
+        
+        cell.textLabel.text = artist.name;
+    }
+    
+    // MARK: NSFetchedResultsControllerDelegate
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController,
+        didChangeObject anObject: AnyObject,
+        atIndexPath indexPath: NSIndexPath?,
+        forChangeType type: NSFetchedResultsChangeType,
+        newIndexPath: NSIndexPath?)
+    {
+        switch(type) {
+            
+        case .Insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath],
+                    withRowAnimation:UITableViewRowAnimation.Fade)
+            }
+            
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath],
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            
+        case .Update:
+            if let indexPath = indexPath {
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell? {
+                    fillCells(cell, indexPath: indexPath)
+                }
+            }
+            
+        case .Move:
+            if let indexPath = indexPath {
+                if let newIndexPath = newIndexPath {
+                    tableView.deleteRowsAtIndexPaths([indexPath],
+                        withRowAnimation: UITableViewRowAnimation.Fade)
+                    tableView.insertRowsAtIndexPaths([newIndexPath],
+                        withRowAnimation: UITableViewRowAnimation.Fade)
+                }
+            }
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController,
+        didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+        atIndex sectionIndex: Int,
+        forChangeType type: NSFetchedResultsChangeType)
+    {
+        switch(type) {
+            
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex),
+                withRowAnimation: UITableViewRowAnimation.Fade)
+            
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex),
+                withRowAnimation: UITableViewRowAnimation.Fade)
+            
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
     }
     
 }

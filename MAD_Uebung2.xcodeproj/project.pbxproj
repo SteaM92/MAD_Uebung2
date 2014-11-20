@@ -18,8 +18,8 @@
 		28A375871A14EC4D0029295F /* VC_DisplayAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A375861A14EC4D0029295F /* VC_DisplayAlbum.swift */; };
 		28A375891A14EC850029295F /* VC_ManageArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A375881A14EC850029295F /* VC_ManageArtist.swift */; };
 		28A3758B1A14EC930029295F /* VC_ManageAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A3758A1A14EC930029295F /* VC_ManageAlbum.swift */; };
-		28A375901A14F3230029295F /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A3758F1A14F3230029295F /* Artist.m */; };
-		28A375931A14F3230029295F /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A375921A14F3230029295F /* Album.m */; };
+		28A4AFBE1A1E246E00442925 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4AFBD1A1E246E00442925 /* Artist.swift */; };
+		28A4AFC01A1E246E00442925 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4AFBF1A1E246E00442925 /* Album.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +48,8 @@
 		28A375861A14EC4D0029295F /* VC_DisplayAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_DisplayAlbum.swift; sourceTree = "<group>"; };
 		28A375881A14EC850029295F /* VC_ManageArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_ManageArtist.swift; sourceTree = "<group>"; };
 		28A3758A1A14EC930029295F /* VC_ManageAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_ManageAlbum.swift; sourceTree = "<group>"; };
-		28A3758E1A14F3230029295F /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
-		28A3758F1A14F3230029295F /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
-		28A375911A14F3230029295F /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
-		28A375921A14F3230029295F /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		28A4AFBD1A1E246E00442925 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		28A4AFBF1A1E246E00442925 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				28A3755F1A14E78C0029295F /* AppDelegate.swift */,
-				28A5D7351A15153C0060DFB8 /* Models */,
 				28A375841A14EBD70029295F /* VC_DisplayArtist.swift */,
+				28A4AFBF1A1E246E00442925 /* Album.swift */,
+				28A4AFBD1A1E246E00442925 /* Artist.swift */,
 				28A375881A14EC850029295F /* VC_ManageArtist.swift */,
 				28A3758A1A14EC930029295F /* VC_ManageAlbum.swift */,
 				28A375861A14EC4D0029295F /* VC_DisplayAlbum.swift */,
@@ -132,17 +131,6 @@
 				28A375771A14E78D0029295F /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		28A5D7351A15153C0060DFB8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				28A375911A14F3230029295F /* Album.h */,
-				28A375921A14F3230029295F /* Album.m */,
-				28A3758E1A14F3230029295F /* Artist.h */,
-				28A3758F1A14F3230029295F /* Artist.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,13 +235,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A375871A14EC4D0029295F /* VC_DisplayAlbum.swift in Sources */,
-				28A375901A14F3230029295F /* Artist.m in Sources */,
 				28A375891A14EC850029295F /* VC_ManageArtist.swift in Sources */,
 				28A375601A14E78C0029295F /* AppDelegate.swift in Sources */,
 				28A3758B1A14EC930029295F /* VC_ManageAlbum.swift in Sources */,
-				28A375931A14F3230029295F /* Album.m in Sources */,
 				28A375851A14EBD70029295F /* VC_DisplayArtist.swift in Sources */,
 				28A375631A14E78C0029295F /* MAD_Uebung2.xcdatamodeld in Sources */,
+				28A4AFBE1A1E246E00442925 /* Artist.swift in Sources */,
+				28A4AFC01A1E246E00442925 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
