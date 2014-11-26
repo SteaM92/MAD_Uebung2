@@ -38,6 +38,49 @@ class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+        
+        artistTapGestureOutlet.requireGestureRecognizerToFail(artistDoubleTapGestureOutlet)
+        
+    }
+    
+    @IBAction func artistLongPressGesture(sender: UILongPressGestureRecognizer) {
+        if (sender.state == UIGestureRecognizerState.Began){
+            tableView.setEditing(!tableView.editing, animated: true)
+        }
+    }
+    @IBAction func artistDoubleTapGesture(sender: UITapGestureRecognizer) {
+        var tapPoint = sender.locationInView(tableView) as CGPoint
+        
+        let indexPath = tableView.indexPathForRowAtPoint(tapPoint)
+        
+        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath!) as Artist
+        
+        if(tableView.editing){
+            var manageArtistController = VC_ManageArtist()
+            manageArtistController.setArtist(artist)
+        
+            self.presentViewController(manageArtistController, animated: true, completion: nil)
+        }
+    }
+    
+    @IBOutlet var artistDoubleTapGestureOutlet: UITapGestureRecognizer!
+    @IBOutlet var artistTapGestureOutlet: UITapGestureRecognizer!
+    
+    @IBAction func artistTapGesture(sender: UITapGestureRecognizer) {
+        var tapPoint = sender.locationInView(tableView) as CGPoint
+        
+        let indexPath = tableView.indexPathForRowAtPoint(tapPoint)
+        
+        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath!) as Artist
+        
+        if(tableView.editing){
+            return;
+        }
+        
+        var albumController = VC_DisplayAlbum()
+        albumController.setArtist(artist)
+        
+        self.presentViewController(albumController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

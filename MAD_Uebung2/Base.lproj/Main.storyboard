@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hLd-8e-0BJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Artists-->
@@ -26,57 +25,25 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HaT-nA-6Se" id="lHm-RL-edx">
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibA-1K-okl">
-                                                    <rect key="frame" x="31" y="11" width="555" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="555" id="pGh-7H-5LY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <exclude reference="pGh-7H-5LY"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ibA-1K-okl" firstAttribute="centerY" secondItem="lHm-RL-edx" secondAttribute="centerY" id="C8d-pn-Q0H"/>
-                                                <constraint firstItem="ibA-1K-okl" firstAttribute="leading" secondItem="lHm-RL-edx" secondAttribute="leadingMargin" constant="19" id="Kko-wC-PeY"/>
-                                                <constraint firstItem="ibA-1K-okl" firstAttribute="leading" secondItem="lHm-RL-edx" secondAttribute="leadingMargin" constant="23" id="U0g-Lu-6In"/>
-                                                <constraint firstItem="ibA-1K-okl" firstAttribute="centerY" secondItem="lHm-RL-edx" secondAttribute="centerY" id="wGi-hl-euW"/>
-                                                <constraint firstItem="ibA-1K-okl" firstAttribute="centerX" secondItem="lHm-RL-edx" secondAttribute="centerX" id="zpr-Sw-QiC"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="C8d-pn-Q0H"/>
-                                                    <exclude reference="Kko-wC-PeY"/>
-                                                    <exclude reference="zpr-Sw-QiC"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="C8d-pn-Q0H"/>
-                                                    <include reference="Kko-wC-PeY"/>
-                                                    <exclude reference="U0g-Lu-6In"/>
-                                                    <exclude reference="wGi-hl-euW"/>
-                                                    <include reference="zpr-Sw-QiC"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gxD-zJ-Kgx" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="5YI-cD-u9a"/>
                             <constraint firstItem="gxD-zJ-Kgx" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="HIN-Vd-DYj"/>
                             <constraint firstAttribute="trailing" secondItem="gxD-zJ-Kgx" secondAttribute="trailing" id="bZY-aW-XeZ"/>
                             <constraint firstItem="gxD-zJ-Kgx" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="wSN-YL-B4Y"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Ey0-hU-ah3" appends="YES" id="ldP-2w-xGI"/>
+                            <outletCollection property="gestureRecognizers" destination="jvV-jn-gvT" appends="YES" id="Xoo-UL-HHO"/>
+                            <outletCollection property="gestureRecognizers" destination="ULj-wh-A3z" appends="YES" id="Xck-wW-BLz"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Artists" id="01M-gf-Hke">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="JXL-TM-PUP">
@@ -86,10 +53,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="artistDoubleTapGestureOutlet" destination="ULj-wh-A3z" id="2rm-J5-kBG"/>
+                        <outlet property="artistTapGestureOutlet" destination="Ey0-hU-ah3" id="kLO-xh-20Y"/>
                         <outlet property="tableView" destination="gxD-zJ-Kgx" id="LOx-34-c6D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Ey0-hU-ah3">
+                    <connections>
+                        <action selector="artistDoubleTapGesture:" destination="vXZ-lx-hvc" id="Plp-XT-8jC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jvV-jn-gvT">
+                    <connections>
+                        <action selector="artistLongPressGesture:" destination="vXZ-lx-hvc" id="tG0-TW-rZ7"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="ULj-wh-A3z"/>
             </objects>
             <point key="canvasLocation" x="1152" y="84"/>
         </scene>

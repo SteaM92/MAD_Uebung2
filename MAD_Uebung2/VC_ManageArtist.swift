@@ -11,13 +11,13 @@ import CoreData
 
 class VC_ManageArtist: UIViewController {
     
-    var artist = [NSManagedObject]();
+    var artist : Artist?
     
     var moc:NSManagedObjectContext?; //? means it can be null aka optional
     var appDelegate:AppDelegate?;
     
-    @IBOutlet weak var artist_name: UITextField!
-    @IBOutlet weak var artist_label: UITextField!
+    @IBOutlet var artist_name: UITextField!
+    @IBOutlet var artist_label: UITextField!
     
     @IBAction func artist_save(sender: UIButton) {
         
@@ -38,12 +38,24 @@ class VC_ManageArtist: UIViewController {
         }
     }
     
+    func setArtist(artist: Artist){
+        self.artist = artist
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // get managedObjectContext
-        appDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
+        appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate;
         moc = appDelegate!.managedObjectContext!  as NSManagedObjectContext; //! because its optional
+        
+        //because artist could be nil
+        if let myArtist = artist {
+            self.artist_name.text = myArtist.name
+            self.artist_label.text = myArtist.label
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,30 +64,35 @@ class VC_ManageArtist: UIViewController {
     }
     
     func save(){
-        let entity =  NSEntityDescription.entityForName("Artist",
-            inManagedObjectContext:
-            moc!)
+        var hasValue = false;
+        if let myArtist = artist {
+            hasValue = true;
+        }
         
-        let myObject = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext:moc)
+        if (!hasValue) {
+            let entity =  NSEntityDescription.entityForName("Artist",
+                inManagedObjectContext: moc!)
+            
+            artist = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext:moc) as? Artist
+            
+            if (artist == nil) {
+                NSLog("Failed to create new Artist entitiy instance");
+                return;
+            }
+        }
         
         //var myObject:Artist = NSEntityDescription.insertNewObjectForEntityForName("Artist", inManagedObjectContext: moc!) as Artist;
+        //myObject.setValue(self.artist_name.text, forKey: "name")
+        //myObject.setValue(self.artist_label.text, forKey: "label")
         
-        myObject.setValue(self.artist_name.text, forKey: "name")
-        myObject.setValue(self.artist_label.text, forKey: "label")
+        artist?.label = artist_label.text;
+        artist?.name = artist_name.text;
         
         var error: NSError?
         if !moc!.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
         }
-    }
-    
-    func edit(){
-
-    }
-    
-    func insert(){
-        
     }
     
 }

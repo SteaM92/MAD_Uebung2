@@ -11,7 +11,7 @@ import CoreData
 
 class VC_DisplayAlbum: UIViewController {
     
-    var album = [NSManagedObject]();
+    var artist: Artist?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,10 @@ class VC_DisplayAlbum: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setArtist(artist: Artist){
+        self.artist = artist
     }
     
     
