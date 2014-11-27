@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistCell" id="HaT-nA-6Se">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArtistCell" id="HaT-nA-6Se">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HaT-nA-6Se" id="lHm-RL-edx">
@@ -40,36 +40,27 @@
                             <constraint firstItem="gxD-zJ-Kgx" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="wSN-YL-B4Y"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="Ey0-hU-ah3" appends="YES" id="ldP-2w-xGI"/>
                             <outletCollection property="gestureRecognizers" destination="jvV-jn-gvT" appends="YES" id="Xoo-UL-HHO"/>
-                            <outletCollection property="gestureRecognizers" destination="ULj-wh-A3z" appends="YES" id="Xck-wW-BLz"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Artists" id="01M-gf-Hke">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="JXL-TM-PUP">
                             <connections>
-                                <segue destination="gu4-Qh-zD6" kind="show" id="D8y-Rg-GJp"/>
+                                <segue destination="gu4-Qh-zD6" kind="show" identifier="manageArtistSegue" id="D8y-Rg-GJp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="artistDoubleTapGestureOutlet" destination="ULj-wh-A3z" id="2rm-J5-kBG"/>
-                        <outlet property="artistTapGestureOutlet" destination="Ey0-hU-ah3" id="kLO-xh-20Y"/>
                         <outlet property="tableView" destination="gxD-zJ-Kgx" id="LOx-34-c6D"/>
+                        <segue destination="Zt6-UE-q8v" kind="show" identifier="displayAlbumSegue" id="cG5-jS-g4s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Ey0-hU-ah3">
-                    <connections>
-                        <action selector="artistDoubleTapGesture:" destination="vXZ-lx-hvc" id="Plp-XT-8jC"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jvV-jn-gvT">
                     <connections>
                         <action selector="artistLongPressGesture:" destination="vXZ-lx-hvc" id="tG0-TW-rZ7"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <tapGestureRecognizer id="ULj-wh-A3z"/>
             </objects>
             <point key="canvasLocation" x="1152" y="84"/>
         </scene>
@@ -85,15 +76,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8X-hZ-npv">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="160" y="83" width="80" height="21"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-p3-d2I">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -103,30 +85,13 @@
                                     <rect key="frame" x="32" y="140" width="46" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyM-qr-MFm">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="281" width="42" height="21"/>
-                                </variation>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-rc-nCo">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="316" width="324" height="30"/>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEP-h2-xUB">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="183" y="413" width="34" height="30"/>
+                                    <rect key="frame" x="177" y="354" width="34" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="artist_save:" destination="gu4-Qh-zD6" eventType="touchUpInside" id="Uwa-KE-Pz4"/>
@@ -140,26 +105,52 @@
                                     <rect key="frame" x="32" y="174" width="324" height="30"/>
                                 </variation>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyM-qr-MFm">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="251" width="42" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-rc-nCo">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="286" width="324" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8X-hZ-npv">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="174" y="84" width="41" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="r8X-hZ-npv"/>
                                 <exclude reference="Vo8-p3-d2I"/>
-                                <exclude reference="NyM-qr-MFm"/>
-                                <exclude reference="vT7-rc-nCo"/>
                                 <exclude reference="mEP-h2-xUB"/>
                                 <exclude reference="zry-P2-U3n"/>
+                                <exclude reference="NyM-qr-MFm"/>
+                                <exclude reference="vT7-rc-nCo"/>
+                                <exclude reference="r8X-hZ-npv"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="r8X-hZ-npv"/>
                                 <include reference="Vo8-p3-d2I"/>
-                                <include reference="NyM-qr-MFm"/>
-                                <include reference="vT7-rc-nCo"/>
                                 <include reference="mEP-h2-xUB"/>
                                 <include reference="zry-P2-U3n"/>
+                                <include reference="NyM-qr-MFm"/>
+                                <include reference="vT7-rc-nCo"/>
+                                <include reference="r8X-hZ-npv"/>
                             </mask>
                         </variation>
                     </view>
@@ -190,5 +181,189 @@
             </objects>
             <point key="canvasLocation" x="431" y="84"/>
         </scene>
+        <!--Manage Album-->
+        <scene sceneID="2Xy-bT-ko3">
+            <objects>
+                <viewController id="TJY-5R-jhs" customClass="VC_ManageAlbum" customModule="MAD_Uebung2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t7f-Wm-9yQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zv8-xm-KT3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6d6-RM-umV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Format" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nY-k0-IuZ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="140" width="55" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGn-1H-Jfh">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="332" width="34" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-mm-FIP">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="367" width="324" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fsy-Nh-IB2">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="183" y="413" width="34" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="album_save:" destination="TJY-5R-jhs" eventType="touchUpInside" id="nkH-k0-ned"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h5D-uf-tsw">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="169" width="324" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="el4-0h-AtC">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="240" width="46" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J3h-9j-MjW">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="269" width="324" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-iR-Zdh">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="175" y="83" width="50" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3nY-k0-IuZ"/>
+                                <exclude reference="MGn-1H-Jfh"/>
+                                <exclude reference="kQl-mm-FIP"/>
+                                <exclude reference="Fsy-Nh-IB2"/>
+                                <exclude reference="h5D-uf-tsw"/>
+                                <exclude reference="el4-0h-AtC"/>
+                                <exclude reference="J3h-9j-MjW"/>
+                                <exclude reference="fhx-iR-Zdh"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="3nY-k0-IuZ"/>
+                                <include reference="MGn-1H-Jfh"/>
+                                <include reference="kQl-mm-FIP"/>
+                                <include reference="Fsy-Nh-IB2"/>
+                                <include reference="h5D-uf-tsw"/>
+                                <include reference="el4-0h-AtC"/>
+                                <include reference="J3h-9j-MjW"/>
+                                <include reference="fhx-iR-Zdh"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="album_format" destination="h5D-uf-tsw" id="lbE-ZU-o0U"/>
+                        <outlet property="album_name" destination="J3h-9j-MjW" id="Cxv-Xm-xpr"/>
+                        <outlet property="album_year" destination="kQl-mm-FIP" id="2ba-e5-xBT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q9f-Pl-JSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1843.5" y="770"/>
+        </scene>
+        <!--Album-->
+        <scene sceneID="Ejs-Ya-cEl">
+            <objects>
+                <viewController id="Zt6-UE-q8v" customClass="VC_DisplayAlbum" customModule="MAD_Uebung2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iXh-Y4-K1T"/>
+                        <viewControllerLayoutGuide type="bottom" id="yQ6-pD-4yJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hKI-pV-mUC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cvl-q6-Xzq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AlbumCell" id="zu0-1A-UUz">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zu0-1A-UUz" id="Ojt-Oa-cNy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="RTg-R1-hzi" appends="YES" id="GbO-C5-ioH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Cvl-q6-Xzq" firstAttribute="leading" secondItem="hKI-pV-mUC" secondAttribute="leading" id="8k7-Je-x5M"/>
+                            <constraint firstAttribute="trailing" secondItem="Cvl-q6-Xzq" secondAttribute="trailing" id="TwE-gg-hIb"/>
+                            <constraint firstItem="Cvl-q6-Xzq" firstAttribute="bottom" secondItem="yQ6-pD-4yJ" secondAttribute="top" id="XGL-3V-tQt"/>
+                            <constraint firstItem="Cvl-q6-Xzq" firstAttribute="top" secondItem="hKI-pV-mUC" secondAttribute="top" id="g5L-84-MMP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Album" id="zg6-f7-are">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="5wV-4e-kFj">
+                            <connections>
+                                <segue destination="TJY-5R-jhs" kind="show" identifier="addAlbumSegue" id="yW9-K9-88T"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Cvl-q6-Xzq" id="Zlo-d1-3nb"/>
+                        <segue destination="TJY-5R-jhs" kind="show" identifier="manageAlbumSegue" id="MpC-yu-mVc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E5K-I3-jG2" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RTg-R1-hzi">
+                    <connections>
+                        <action selector="albumLongPressGesture:" destination="Zt6-UE-q8v" id="0b6-ax-lkP"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1152" y="770"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yW9-K9-88T"/>
+    </inferredMetricsTieBreakers>
 </document>

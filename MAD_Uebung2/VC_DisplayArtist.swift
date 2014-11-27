@@ -39,48 +39,59 @@ class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.dataSource = self
         tableView.reloadData()
         
-        artistTapGestureOutlet.requireGestureRecognizerToFail(artistDoubleTapGestureOutlet)
-        
     }
     
     @IBAction func artistLongPressGesture(sender: UILongPressGestureRecognizer) {
         if (sender.state == UIGestureRecognizerState.Began){
-            tableView.setEditing(!tableView.editing, animated: true)
-        }
-    }
-    @IBAction func artistDoubleTapGesture(sender: UITapGestureRecognizer) {
-        var tapPoint = sender.locationInView(tableView) as CGPoint
-        
-        let indexPath = tableView.indexPathForRowAtPoint(tapPoint)
-        
-        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath!) as Artist
-        
-        if(tableView.editing){
-            var manageArtistController = VC_ManageArtist()
-            manageArtistController.setArtist(artist)
-        
-            self.presentViewController(manageArtistController, animated: true, completion: nil)
+            var tapPoint = sender.locationInView(tableView) as CGPoint
+            
+            let indexPath = tableView.indexPathForRowAtPoint(tapPoint)
+            
+            let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath!) as Artist
+            
+            self.performSegueWithIdentifier("manageArtistSegue", sender: artist)
         }
     }
     
-    @IBOutlet var artistDoubleTapGestureOutlet: UITapGestureRecognizer!
-    @IBOutlet var artistTapGestureOutlet: UITapGestureRecognizer!
     
-    @IBAction func artistTapGesture(sender: UITapGestureRecognizer) {
-        var tapPoint = sender.locationInView(tableView) as CGPoint
-        
-        let indexPath = tableView.indexPathForRowAtPoint(tapPoint)
-        
-        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath!) as Artist
-        
-        if(tableView.editing){
-            return;
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true;
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == .Delete){
+            let artist = aFetchedRequestResultsControlller!.objectAtIndexPath(indexPath) as Artist
+            
+            artist.managedObjectContext?.deleteObject(artist)
+            
+            var e:NSError?;
+            if(!(artist.managedObjectContext!.save(&e))){
+                NSLog("delete artist error")
+            }
         }
         
-        var albumController = VC_DisplayAlbum()
-        albumController.setArtist(artist)
+    }
+    
+    //normal click - show albums
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.presentViewController(albumController, animated: true, completion: nil)
+        let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath) as Artist
+        
+        self.performSegueWithIdentifier("displayAlbumSegue", sender: artist)
+    }
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "displayAlbumSegue"){
+            let displayAlbum = segue.destinationViewController as VC_DisplayAlbum
+            displayAlbum.setArtist(sender as Artist)
+        }else if(segue.identifier == "manageArtistSegue"){
+            let manageArtist = segue.destinationViewController as VC_ManageArtist
+            //only if you click on manage, not on add
+            if(sender is Artist){
+                manageArtist.setArtist(sender as Artist)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,9 +118,6 @@ class VC_DisplayArtist: UIViewController, UITableViewDataSource, UITableViewDele
     
     func fillCells(cell:UITableViewCell, indexPath:NSIndexPath){
         let artist = aFetchedRequestResultsControlller?.objectAtIndexPath(indexPath) as Artist;
-        
-       /// var label = cell.viewWithTag(1) as UILabel
-        //label.text = ("\(artist.name)");
         
         cell.textLabel.text = artist.name;
     }
